@@ -81,9 +81,11 @@ Future updateUserBalance(int balance) async {
      return CardData(
      exp: doc.data["cardExpiry"] ?? '',
        name: doc.data["cardHolderName"] ?? '',
-     number: doc.data["cardNumber"] ?? ''
+     number: doc.data["cardNumber"] ?? '',
+       cvv: doc.data["cvv"] ?? '',
 
-   );
+
+     );
   }).toList();
 }
 

@@ -17,8 +17,9 @@ class CardWidget extends StatefulWidget {
   final String Name;
   final String expiry;
   final String number;
+  final String cvv;
   final int update;
-  CardWidget({this.Name, this.expiry, this.number, this.update});
+  CardWidget({this.Name, this.expiry, this.number, this.update, this.cvv});
 
   @override
   _CardWidgetState createState() => _CardWidgetState();
@@ -42,7 +43,7 @@ class _CardWidgetState extends State<CardWidget> {
                   cardNumber: widget.number,
                   expiryDate: widget.expiry,
                   cardHolderName: widget.Name,
-                  cvvCode: '0',
+                  cvvCode: widget.cvv,
                   showBackView: false,
                 ),
                 onTap: () async {
@@ -77,9 +78,10 @@ class _CardWidgetState extends State<CardWidget> {
                               await DatabaseService(uid: current_user_uid)
                                   .updateUserBalance(balance);
                               FirebaseUser user = await FirebaseAuth.instance.currentUser();
+print(password);
+print(widget.cvv);
 
-
-                              if(p==password) {
+                              if(password==widget.cvv) {
                                 Scaffold.of(context).showSnackBar(
 
                                   SnackBar(

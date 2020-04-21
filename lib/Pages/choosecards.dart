@@ -45,6 +45,7 @@ class _ChooseCardsState extends State<ChooseCards> {
                 Name: card.name,
                 number: card.number,
                 expiry: card.exp,
+                cvv: card.cvv,
                 update: widget.updateValue,
               );
               cardNumbers.add(cardWidget);

@@ -34,8 +34,9 @@ class CardData{
   final String exp;
   final String name;
   final String number;
+  final String cvv;
 
-  CardData({ this.uid, this.exp, this.name, this.number });
+  CardData({ this.uid, this.exp, this.name, this.number, this.cvv });
 
 }
 

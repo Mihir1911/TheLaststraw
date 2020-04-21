@@ -1,19 +1,22 @@
 import 'dart:io';
-
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_rounded_date_picker/rounded_picker.dart';
+import 'package:image_picker/image_picker.dart';
 //import 'package:image_picker/image_picker.dart';
 import 'package:palet/Pages/profile/profile.dart';
 import 'package:palet/components/loading.dart';
 import 'package:palet/components/mode.dart';
+import 'package:palet/models/uid.dart';
 import 'package:palet/models/user.dart';
 import 'package:palet/services/auth.dart';
 import 'package:palet/services/database.dart';
 import 'package:provider/provider.dart';
+
 
 class ProfilePage extends StatefulWidget {
   final AuthService _auth = AuthService();
@@ -23,6 +26,36 @@ class ProfilePage extends StatefulWidget {
 }
 
 class ProfilePageState extends State<ProfilePage> {
+//  File _image;
+//  bool dpUpdated = false;
+//
+//  Future getImage() async {
+//    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+//
+//    _image = image;
+//    String fileName = basename(_image.path);
+//    print('Image Path $_image');
+//  }
+
+//  Future uploadPic(BuildContext context) async {
+//    StorageReference storageReference =
+//    FirebaseStorage.instance.ref().child('profiles/$current_user_uid');
+//    StorageUploadTask uploadTask = storageReference.putFile(_image);
+//    await uploadTask.onComplete;
+//    print('File Uploaded');
+//    storageReference.getDownloadURL().then((fileURL) {
+//      uploadedFileURL = fileURL;
+//      print("File url : $uploadedFileURL");
+//
+//      DatabaseService(uid: current_user_uid).updateProfile(uploadedFileURL);
+//      setState(() {
+//        dpUpdated = false;
+//      });
+//    });
+//  }
+
+
+
   final _formKey = GlobalKey<FormState>();
   String name;
   String emailID;
@@ -107,13 +140,14 @@ class ProfilePageState extends State<ProfilePage> {
         builder: (context, snapshot) {
           UserData userData = snapshot.data;
 
-          dob = userData.dob;
-          newDt = dob.toDate();
-          m = newDt.month;
-          d = newDt.day;
-          y = newDt.year;
+
 
           if (snapshot.hasData) {
+            dob = userData.dob;
+            newDt = dob.toDate();
+            m = newDt.month;
+            d = newDt.day;
+            y = newDt.year;
             return Scaffold(
                 appBar: AppBar(
                   backgroundColor: Colors.teal[600],

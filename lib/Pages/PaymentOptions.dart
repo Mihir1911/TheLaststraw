@@ -48,7 +48,9 @@ class _PaymentOptionsState extends State<PaymentOptions> {
         stream: DatabaseService(uid: current_user_uid).walletData,
         builder: (context, snapshot) {
           if (snapshot.hasData) {
+
             WalletData walletData = snapshot.data;
+            balance=walletData.balance;
             amt=widget.amount;
             return StreamBuilder<List<CardData>>(
                 stream: DatabaseService(uid: current_user_uid).cardData,
@@ -198,7 +200,42 @@ class _PaymentOptionsState extends State<PaymentOptions> {
                                     Text('Current Wallet balance: ' +
                                         walletData.balance.toString()),
                                     RaisedButton(
-                                        child: Text('Use'), onPressed: () {})
+                                        child: Text('Use'), onPressed: () async {
+                                          balance=balance-amt;
+                                          if(balance<0){
+                                            Alert(
+                                              context: context,
+                                              type: AlertType.error,
+                                              title: "Insufficient Balance",
+                                              desc: "Add card or use Saved Cards",
+                                              buttons: [
+                                                DialogButton(
+                                                  child: Text(
+                                                    "Okay",
+                                                    style: TextStyle(color: Colors.white, fontSize: 20),
+
+                                                  ),
+                                                  onPressed: (){
+                                                    Navigator.pop(context);
+
+                                                  },
+                                                  width: 120,
+                                                )
+
+                                              ],
+
+                                            ).show();
+
+                                          }
+                                          else {
+                                            await DatabaseService(
+                                                uid: current_user_uid)
+                                                .updateUserBalance(balance);
+                                            Navigator.pop(context);
+                                          }
+
+
+                                    })
                                   ],
                                 )
                               ],
