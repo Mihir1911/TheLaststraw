@@ -1,4 +1,6 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class UserID{
   final String uid;
   UserID(this.uid);
@@ -10,9 +12,10 @@ class UserData{
   final String emailID;
   final String phone;
   final String address;
+  final Timestamp dob;
 
 
-  UserData({ this.uid, this.name, this.emailID, this.phone, this.address });
+  UserData({ this.uid, this.name, this.emailID, this.phone, this.address, this.dob });
 
 
 }

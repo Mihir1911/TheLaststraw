@@ -24,9 +24,71 @@ class BusTicketForm extends StatelessWidget {
                 ),
 
             ),
-            DropdownButtonFormField(
+            TextFormField(
+              validator: (val) => val.isEmpty? 'Age': null,
+              decoration: InputDecoration(
+                labelText: 'Date',
+                labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color:Colors.grey,
+                ),
+              ),
 
-            )
+            ),
+            TextFormField(
+              validator: (val) => val.isEmpty? 'Age': null,
+              decoration: InputDecoration(
+                labelText: 'Age',
+                labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color:Colors.grey,
+                ),
+              ),
+
+            ),
+            DropdownButtonFormField(
+              hint: Text('No. of Tickets'),
+
+            ),
+
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                labelText: 'Provider',
+                labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color:Colors.grey,
+                ),
+              ),
+
+            ),
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                labelText: 'From',
+                labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color:Colors.grey,
+                ),
+              ),
+            ),
+            DropdownButtonFormField(
+              decoration: InputDecoration(
+                labelText: 'To',
+                labelStyle: TextStyle(
+                  fontFamily: 'Montserrat',
+                  color:Colors.grey,
+                ),
+              ),
+
+            ),
+            RaisedButton(
+                child: Text('Book'),
+                onPressed: (){})
+
+
+
+            
+
+
 
 
           ],

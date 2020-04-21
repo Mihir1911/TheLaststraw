@@ -42,21 +42,15 @@ class _BusTicketsPageState extends State<BusTicketsPage> {
       body: ListView(
         children: <Widget>[
           image_carousel,
-          ListView(
-            children: <Widget>[
-
-              // TODO: implement Bus Ticket display here
-
-            ],
-          ),
           RaisedButton(
             child: Text(
-              'Add tickets'
+                'Add tickets'
             ),
             onPressed: (){
               Navigator.pushNamed(context, BusTicketForm.id);
             },
           )
+
 
         ],
 

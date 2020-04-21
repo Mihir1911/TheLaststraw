@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_credit_card/credit_card_widget.dart';
+import 'package:flutter_rounded_date_picker/rounded_picker.dart';
 import 'package:palet/Pages/authenticate/authenticate.dart';
 import 'package:palet/components/loading.dart';
 import 'package:palet/constants.dart';
@@ -24,8 +26,14 @@ class _SignPageState extends State<SignUpPage> {
   String error='';
   String phone='';
   String name='';
+  Timestamp dob;
   final TextEditingController phoneNumberController= MaskedTextController(mask: '0000000000');
   final TextEditingController emailController= MaskedTextController(mask: 'A');
+  int day = 01;
+  int month = 01;
+  int year = 2002;
+  DateTime newDt = DateTime.now();
+  Timestamp myTimeStamp = Timestamp.fromDate(DateTime.now());
 
   @override
   Widget build(BuildContext context) {
@@ -109,6 +117,49 @@ class _SignPageState extends State<SignUpPage> {
                         );
                       }
                   ),
+                 Row(
+
+                   children: <Widget>[
+                     Container(
+                       width: 230.0,
+                       child: TextFormField(
+                         decoration: InputDecoration(
+                             hintText: 'DOB: $day/$month/$year'
+                         ),
+enabled: false,
+                       ),
+                     ),
+                     FlatButton(
+                       onPressed: () async {
+                         newDt = await showRoundedDatePicker(
+                           context: context,
+                           initialDate: DateTime(DateTime.now().year - 18),
+                           firstDate: DateTime(DateTime
+                               .now()
+                               .year - 50),
+                           lastDate: DateTime(DateTime
+                               .now()
+                               .year - 10),
+                           borderRadius: 16,
+                         );
+                         print('$newDt is newdt');
+                         myTimeStamp = Timestamp.fromDate(newDt);
+                         setState(() {
+                           day=newDt.day;
+                           month=newDt.month;
+                           year=newDt.year;
+                         });
+                         dob = Timestamp.fromDate(newDt);
+
+
+                       },
+                       child: Icon(
+                         Icons.date_range,
+                       ),
+                     ),
+                   ],
+
+                 ),
                   TextFormField(
                       validator: (val) => val.length<6? 'Enter a password 6+ chars long': null,
                       decoration: InputDecoration(
@@ -143,7 +194,7 @@ class _SignPageState extends State<SignUpPage> {
                             setState(() =>
                             loading = true);
                             dynamic newUser = await _auth
-                                .registerWithEmailAndPassword(name, email, password, phone);
+                                .registerWithEmailAndPassword(name, email, password, phone, dob);
 
                             if (newUser == null) {
                               setState(() =>

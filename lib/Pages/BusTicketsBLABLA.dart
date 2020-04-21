@@ -87,12 +87,12 @@ class _BusTicketsBLABLAState extends State<BusTicketsBLABLA> {
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0, right: 40.0),
                         child: ticketDetailsWidget(
-                            'Flight', '76836A45', 'Gate', '66B'),
+                            'Bus', '76836A45', 'Age', '20'),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(top: 12.0, right: 40.0),
                         child: ticketDetailsWidget(
-                            'Class', 'Business', 'Seat', '21B'),
+                            'Tickets', '3', 'Seat', '21B'),
                       ),
                     ],
                   ),

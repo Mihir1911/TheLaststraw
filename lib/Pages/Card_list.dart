@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:palet/Cardtile.dart';
+import 'package:palet/components/Cardtile.dart';
 import 'package:palet/models/user.dart';
 import 'package:provider/provider.dart';
 

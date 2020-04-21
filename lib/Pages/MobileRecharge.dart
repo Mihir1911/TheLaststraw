@@ -177,7 +177,9 @@ class _MobileRechargeState extends State<MobileRecharge> {
                           ),
                           onTap: () {
                             if (billAmount != 0) {
-                              Navigator.pushNamed(context, PaymentOptions.id);
+    Navigator.push(context, MaterialPageRoute(builder: (context){
+    return PaymentOptions(amount: billAmount,);
+    }));
                             } else {}
                           },
                         )
