@@ -19,13 +19,12 @@ class DatabaseService{
 
 
 
-  Future updateUserData(String name, String emailID, String phone, String address, Timestamp dob) async {
+  Future updateUserData(String name, String emailID, String phone, String address) async {
   return await profileCollection.document(uid).setData({
     'name': name,
     'emailID': emailID,
     'phone': phone,
     'address': address,
-    'dob': dob,
 
 
   });
@@ -63,8 +62,6 @@ Future updateUserBalance(int balance) async {
       emailID: doc.data['emailID'] ?? '',
       phone: doc.data['phone'] ?? '',
       address: doc.data['address'] ?? '',
-      dob: doc.data['dob'] ?? '',
-
 
     );
   }).toList();
@@ -97,7 +94,6 @@ Future updateUserBalance(int balance) async {
     emailID: snapshot.data["emailID"],
     phone: snapshot.data["phone"],
     address: snapshot.data["address"],
-    dob: snapshot.data["dob"],
 
   );
   }
