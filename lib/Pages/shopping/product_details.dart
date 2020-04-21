@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:palet/constants.dart';
 class ProductDetails extends StatefulWidget {
   final product_detail_name;
   final product_detail_new_price;
@@ -24,7 +25,7 @@ class _ProductDetailsState extends State<ProductDetails> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0.0,
-        backgroundColor: Colors.teal,
+        backgroundColor: kMainColor,
         centerTitle: true,
         title: Text('ShoppApp'),
         actions: <Widget>[
@@ -204,9 +205,12 @@ class _ProductDetailsState extends State<ProductDetails> {
                   child: Text("Buy now")
                 ),
               ),
-              IconButton(icon: Icon(Icons.add_shopping_cart,color: Colors.red,),onPressed: (){},),
+              IconButton(icon: Icon(Icons.add_shopping_cart,color: Colors.red,),onPressed: (){
 
-              IconButton(icon: Icon(Icons.favorite_border,color: Colors.red,),onPressed: (){},),
+
+              },),
+
+              //IconButton(icon: Icon(Icons.favorite_border,color: Colors.red,),onPressed: (){},),
 
 
 

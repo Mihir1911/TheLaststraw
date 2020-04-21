@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
+import 'package:palet/Pages/shopping/Shopping_cart_new.dart';
+import 'package:palet/Pages/shopping/Shopping_list_new.dart';
 import 'package:palet/constants.dart';
 import '../../components/HorizontalList.dart';
 import '../../components/products.dart';
@@ -41,8 +43,12 @@ class _ShoppingPageState extends State<ShoppingPage> {
         title: Text('ShoppApp'),
         actions: <Widget>[
           IconButton(icon: Icon(Icons.search,color: Colors.white,),onPressed: (){},),
+          IconButton(icon: Icon(Icons.list,color: Colors.white,),onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>new Shopping_list()));
+
+          },),
           IconButton(icon: Icon(Icons.shopping_cart,color: Colors.white,),onPressed: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>new Shoppingcart()));
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>new Newcart()));
 
           },)
 
@@ -67,7 +73,7 @@ class _ShoppingPageState extends State<ShoppingPage> {
           HorizontalList(),
           Padding(
             padding: EdgeInsets.all(20.0),
-            child: Text('Recent Products'),
+            child: Text('Products'),
 
 
           ),
